@@ -1,0 +1,582 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.inactive{
+    display: none;
+    pointer-events: none;
+    opacity: 0;
+}
+
+/*Configuracion para que al usar un href indicando un #id, se saltee la posicion fijada de la navbar*/
+html{
+    scroll-padding-top: 90px;
+ }
+
+body{
+    overflow-y: scroll;
+}
+/*Permite el scroll en el eje Y y quito la barra de scroll de la vista.*/
+::-webkit-scrollbar{
+    display: none;
+}
+
+/*Inicio seccion estilos Nav-Bar*/
+nav{    
+    display: flex;
+    height: 80px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    justify-content: space-between;
+    background-color: black;
+    align-items: center;
+}
+
+nav img{
+    height: 80px;
+}
+
+nav ul{margin-right: 10px;}
+
+nav li{
+    float: left;
+}
+
+nav li a{
+    display: flex;
+    align-items: center;
+    color: whitesmoke;
+    height: 60px;
+    /*padding: top left bottom right*/
+    padding: 0px 15px 0px 15px; 
+    font-weight: 500;
+    font-size: 15px;
+}
+
+nav li a:hover{
+    background-color: rgb(44, 44, 44);
+    border: 3px solid whitesmoke;
+    border-radius: 15px;
+}
+/*Fin seccion estilos Nav-Bar*/
+
+/*Inicio seccion estilos Categorias-Scroll*/
+.categorias{
+    display: flex;
+    overflow-x: scroll;
+    margin-top: 100px;
+    z-index: -999;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.categorias li a{
+    display: flex;
+    height: 50px;
+    padding: 0px 10px 0px 10px;
+    margin: 0px 10px 0px 10px;
+    align-items: center; /*Al tener display flex, alinea el texto dentro de cada Li de la lista*/
+    white-space: nowrap; /*No corta el texto, haciendo que la categoria entre en linea recta*/
+    color: black;
+    font-weight: 500; /*Le doy mas peso a la letra, haciendola mas gruesa*/
+    border: 3px solid whitesmoke;
+    border-radius: 10px;
+}
+
+.categorias li a:hover{
+    color: whitesmoke;
+    background-color: rgb(3, 3, 126);
+    border-color: red;
+}
+
+.categorias li a:active{
+    transition: all .5s;
+}
+/*Fin seccion estilos Categorias-Scroll*/
+
+.container{
+    display: flex;
+    flex-direction: column-reverse;
+    margin-top: 10px;
+    /*grid-template-columns: repeat(3,1fr);*/
+    grid-template-rows: repeat(1,1fr);
+    gap: 20px; /*Distancia entre cada filas y columnas*/
+    height: fit-content;
+    align-items: center;
+}
+
+.container .container-main{
+    display: grid;
+    grid-column: 1/3;
+    width: 80%;
+    height: fit-content;
+    margin: 10px 0px 10px 0rem;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: 40px repeat(3,1fr);
+    gap: 20px 80px;
+}
+
+.container .container-main h2{
+    text-align: center;
+    grid-column: 1/3;
+}
+
+.container .container-main .card .texto{
+    display: flex;
+    height: 90%;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 8px 0px 0px 16px;
+    font-weight: 500;
+}
+
+.container .container-main .card{
+    /*Asi puedo ajustar la imagen de fondo al tamano del div.
+    Podria usar background-position: center; para centrar la imagen pero la foto del mondongo a la espanola no queda bien centrada.*/
+    background-size: cover;
+    border-radius: 20px;
+    height: 300px;
+    /*El primero es para la sombra del bottom y el otro para el efecto blur*/
+    box-shadow: 0px 3px 3px  black;
+    
+}
+
+.card1{background-position: 0px -100px;}
+.card2{background-position: 0px -450px;}
+.card3{background-position: 0px -270px;}
+.card5{background-position: 0px -140px;}
+.card6{background-position: 0px -40px;}
+
+.container .container-main .card h4{
+    background-color: beige;
+    width: fit-content;
+    padding: 0px 6px 0px 6px;
+    border-radius: 5px;
+}
+
+.container .container-main .card p{
+    /*El ultimo valor es alpha y especifica la opacidad del color de fondo*/
+    background-color: rgb(245, 245, 220, 0.5);
+    width: fit-content;
+    padding: 0px 6px 0px 6px;
+    border-radius: 5px;
+    font-weight: 700;
+}
+
+.container .container-aside{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    /*justify-content: center; Si elimino el comentario se posiciona justo en el medio del div*/
+}
+
+.container .container-aside #nombrePDia{
+    font-family: 'Dancing Script',cursive; /*Fuente para usar la integrada elegida en la pagina google fonts*/
+    font-size: 75px;
+    text-align: center;
+}
+
+.container .container-aside #descripcionPDia{
+    font-size: 36px;
+    text-align: center;
+    margin: 0px 20px 0px 20px;
+}
+
+button{
+    margin: 10px 30px;
+    width: 100px;
+    border-radius: 5px;
+}
+
+/*Al ser la linea que separa el plato del dia de las categorias en la version para moviles, en la version para pc no quiero que se visualice.*/
+#lineaMoviles{
+    display: none;
+}
+#lineaMenuTextual{
+    height: 3px;
+    margin-top: 24px;
+    background-color: black;
+    width: 95%;
+    margin-left: 2.5%;
+}
+
+/*Inicio seccion estilos Menu*/
+/*Inicio seccion Carta Styles*/
+.menu{
+    width: 80%; 
+    text-align: center; 
+    margin-left: 10%;
+}
+
+.menu .categoria{ margin: 16px; }
+
+.menu .categoria ul li h4 label{ color: rgb(3, 66, 95); }
+
+.menu .categoria ul li{
+    display: flex;
+    justify-content: space-between;
+    height: 45px;
+    margin: 0px 50px 6px 50px;
+    align-items: center;
+}
+.menu .categoria h3{ font-size: 1.8em; }
+.menu .categoria ul li h4{ font-size: 1.4em; }
+.menu .categoria ul li button{
+    display: flex;
+    font-size: 1.5em;
+    width: auto;
+    height: 40px;
+    padding: 0px 6px 0px 6px;
+    align-items: center;
+    font-weight: 600;
+    margin-right: 30px;
+    border-radius: 5px;
+    width: 100px;
+    justify-content: center;
+    box-shadow: 0px 1px 6px  black;
+}
+
+.menu .categoria ul li button img{
+    width: 20px; 
+    height: 20px;
+}
+
+.categoria h3{
+    text-decoration:underline;
+    text-decoration-color: red;
+    color: rgb(0, 0, 113);
+    font-weight: 700;
+}
+
+.menu p{ text-align: center; }
+
+/*Fin seccion estilos Menu*/
+
+/*Inicio seccion estilos Footer*/
+footer{
+    text-align: center;
+    margin-top: 36px;
+    padding-bottom: 24px;
+}
+footer h2 a{color: rgb(0, 42, 158);}
+footer h2 a:hover{color: black;text-decoration: underline;}
+footer h2 a:active{color: red;text-decoration: none;}
+footer .info{
+    display: flex; 
+    flex-direction: column;
+    border-top: 1px black solid; 
+    margin-top: 10px; 
+    width: 60%;
+    padding-top: 8px;
+    align-items: center;
+    margin-left: 20%;
+}
+footer .info .dato{display: flex;}
+footer p{
+    margin-left: 8px;
+    font-weight: 500;
+}
+footer label{
+    font-weight: 700;
+}
+/*Fin estilos Footer.handlebars*/
+#details{
+    display: flex;
+    width: 80%;
+    margin-left: 10%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+#details #order{
+    padding: 0.5rem 0rem;
+    width: 8rem;
+    height: 3rem;
+    text-align: center;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+#details #subtotal{
+    padding: 0.5rem 0rem;
+    width: 8rem;
+    height: 3rem;
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 0.4rem;
+    cursor: pointer;
+}
+#details #subtotal:hover{
+    background-color: black;
+}
+#details #subtotal:hover::placeholder{ color: aliceblue; }
+#subtotal::placeholder{
+    color: black;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+#shoppingCart{
+    width: 30%;
+    margin-left: 50%;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    border: 0.3rem solid black;
+    border-radius: 0.25rem;
+    padding: 0.75rem 0rem;
+}
+#shoppingCart h4{
+margin: 0.25rem ;
+}
+
+
+@media screen and (max-width:415px){
+    body{
+        width: 100%;
+        height: 100%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+    /*Permite el scroll en el eje Y y quito la barra de scroll de la vista.*/
+    ::-webkit-scrollbar{
+        display: none;
+    }
+    nav{    
+        display: flex;
+        height: 80px;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        justify-content: space-between;
+        background-color: black;
+        align-items: center;
+    }
+    
+    nav ul{
+        font-size: 1em; 
+    }
+
+    nav li:hover{border: none;background-color: black; border:0px;}
+
+    nav li a:active{
+        background-color: rgb(44, 44, 44);
+        border: 3px solid whitesmoke;
+        border-radius: 15px;
+    }
+
+    .categorias{
+        overflow-x: auto;
+        width: 100%;
+        white-space: nowrap;/*No corta el texto, haciendo que la categoria entre en linea recta*/
+        justify-content: start;
+    }
+
+    .categorias li{
+        display: inline-block;
+    }
+
+    .categorias li a{
+        display: flex;
+        height: 50px;
+        width: auto;
+        margin: 0px 10px 0px 10px;
+        align-items: center; /*Al tener display flex, alinea el texto dentro de cada Li de la lista*/ 
+        color: black;
+        font-weight: 500; /*Le doy mas peso a la letra, haciendola mas gruesa*/
+        border: 3px solid whitesmoke;
+        border-radius: 10px;
+    }
+
+    .categorias li a:hover{
+        color: whitesmoke;
+        background-color: rgb(3, 3, 126);
+        border-color: red;
+    }
+
+    .container{
+        display: flex;
+        height: 100%;
+        flex-direction: column-reverse;
+        width: 100%;
+        z-index: -999;
+        margin-top: 16px;
+        /*border-top: 3px solid black;*/
+        /*z-index para que no superponga la navbar, position relative para */
+    }
+
+    .container .container-main{
+        display: flex;
+        flex-direction: column;
+        margin-top: 30px;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        margin-left: 0px;
+        justify-content: center;   
+    }
+
+    .container .container-main .card{
+        height: 250px;
+        display: flex;
+        text-align: center ;
+        align-items: center;
+        width: 80%;
+        /*background-position: center center; si descomento esta linea queda un diseño mas responsive, la comento ya que son platos preferentes los cuales dudo que se actualicen seguido, optando asi por posicionarlos manualmente*/
+        /*background-attachment: fixed; si descomento esta linea, las imagenes quedan fijas y al scrollear se mueven las tarjetas a medida que van recorriendo las imagenes, un efecto muy bueno a tener en cuenta pero debo achicar las imagenes un poco para no perder*/
+    }
+    .container .container-main .card .texto{
+        align-items: start;
+        margin-left: 8px;
+    }
+    .container .container-main .card .texto p{
+        margin: 0px 8px 0px 0px;
+        padding: 0px;
+    }
+
+    .card1{background-position: 0px -30px;}
+    .card2{background-position: 0px -165px;}
+    .card3{background-position: 0px -80px;}
+    .card4{background-position: -30px 0px;}
+    .card5{background-position: 0px -30px;}
+    .card6{background-position: -50px -30px;}
+
+    .container .container-aside{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 0px;
+        /*Por probar los bordes de cada esquina redondeados
+        background-color: rgb(184, 184, 184);
+        border-bottom-left-radius: 200px;
+        border-bottom-right-radius: 200px;*/
+    }
+
+    #lineaMoviles{
+        display: flex;
+        justify-content: center;
+        height: 2px;
+        width: 90%;
+        /*width al 90% y margin left a la mitad del espacio restante en el div para que quede centrado*/
+        background-color: black;
+    }
+
+    .menu{
+        display: block; 
+        width: 100%; 
+        margin: 0px; 
+        text-align: left;
+    }
+
+    .menu .categoria ul li .buyBtn{
+        display: flex;
+        font-size: 1em;
+        width: 82px;
+        height: 30px;
+        padding: 0px 6px 0px 6px;
+        margin-right: 16px;
+        align-items: center;
+        font-weight: 600;
+    }
+    .menu .categoria ul li {
+        margin:18px 8px 18px 8px ;
+        min-height: 30px;
+        max-height: 42px;
+        height: fit-content;
+    }
+
+    .menu .categoria ul li h4{
+        font-size: 1em; 
+        width: 270px;
+        display: flex;
+        min-height: 30px;
+        height: fit-content;
+        align-items: center;
+    }
+
+    
+
+    #shoppingCart{
+        display: flex;
+        justify-content: center;
+        width: 90%;
+        margin-left: 5%;
+        font-size: 0.75rem;
+    }
+
+    footer #datoTelefono{
+        flex-direction: column;
+        margin-bottom: 8px;
+    }
+    footer #datoDireccion{
+        flex-direction: column;
+    }
+
+    footer .info .dato{
+        margin-left: 0px;
+    }
+    footer .info .dato p{ white-space: nowrap;}
+}
+
+@media screen and (max-width:350px){
+    
+    nav {
+        width: 100%;
+        height: 80px;
+    }
+    nav ul{
+        justify-content: center;
+    }
+    nav ul li {
+        display: flex;
+        font-size: 0.75em;
+        height: 45px;
+        align-items: center;
+        height: 80px;
+    }
+    nav ul li a{
+        height: 60px;
+    }
+
+    .card1{ background-position: 0px 0px; }
+    .card2{ background-position: 0px -100px; }
+    .card3{ background-position: 0px -40px; }
+    .card4{ background-position: -50px 0px;  }
+    .card5{ background-position: 0px 0px; }
+    .card6{ background-position: -80px 0px; }
+
+    .menu .categoria ul li h4{ width: 190px; }
+    .menu .categoria ul li{
+        display: flex;
+        justify-content: space-between;
+        height: 40px;
+        padding: 8px 0px 8px 0px;
+        margin: 24px 8px 24px 8px;
+        align-items: center;
+        font-size: 1em;
+    }
+
+    .menu .categoria ul li .buyBtn{
+        margin-right: 0px;
+        max-width: 78px;
+        width: 100%;
+    }
+
+    .container .container-main .card{
+        margin:0px
+    }
+
+    footer #datoTelefono{
+        flex-direction: column;
+        margin-bottom: 8px;
+    }
+    footer #datoDireccion{
+        flex-direction: column;
+    }
+}
