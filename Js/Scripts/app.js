@@ -29,26 +29,26 @@ const agregarCarrito = (plato) =>{
 
 //Al realizar la orden el subtotal vuelve a 0
 orderBtn.onclick = ()=>{
-    console.log('Carrito Vaciado, Orden pedida, Subtotal restaurado a 0');
-    inputSubT.setAttribute('placeholder',`$0`);
-    carrito = [];
-    subTotal = 0;
-    swal('Thanks for you buy','Shopping cart cleared','success');
-    divCarrito.innerHTML = ""; //Div shoppingCart limpiado
-    (divCarrito.classList.contains('inactive') ? '' : divCarrito.classList.add('inactive'))
+    if(carrito.length > 0){
+        console.log('Carrito Vaciado, Orden pedida, Subtotal restaurado a 0');
+        inputSubT.setAttribute('placeholder',`$0`);
+        carrito = [];
+        subTotal = 0;
+        swal('Thanks for you buy','Shopping cart cleared','success');
+        divCarrito.innerHTML = ""; //Div shoppingCart limpiado
+        (divCarrito.classList.contains('inactive') ? '' : divCarrito.classList.add('inactive'))
+    }else{
+        swal('Your shopping cart is empty','Add one or more dishes to the shoppingCart first','error');
+    }
 }
 
 
-inputSubT.onmouseover = () =>{
+inputSubT.onmouseup = () =>{
     if(carrito.length>0){
         divCarrito.classList.toggle('inactive');
     }
 }
-inputSubT.onmouseleave = ()=>{
-    if(carrito.length>0){
-        divCarrito.classList.toggle('inactive');
-    }
-}
+
 
 const cargarPlatosCreate = async() => {
     let respuesta = await fetch('./Data/food.json');
