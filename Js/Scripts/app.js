@@ -20,7 +20,7 @@ const agregarCarrito = (plato) =>{
     carrito.push(plato);
     subTotal += plato.precio;
     inputSubT.setAttribute('placeholder',`$${subTotal}`);
-    swal('Dish added to the Shopping Cart','','success');
+    swal(`${plato.nombre} anadido al carrito`,'','success');
     let dish = document.createElement('h4');
     dish.textContent = plato.nombre + ' $' + plato.precio;
     divCarrito.appendChild(dish);
@@ -34,7 +34,7 @@ orderBtn.onclick = ()=>{
         inputSubT.setAttribute('placeholder',`$0`);
         carrito = [];
         subTotal = 0;
-        swal('Thanks for you buy','Shopping cart cleared','success');
+        swal('Gracias por su compra','carrito vaciado','success');
         divCarrito.innerHTML = ""; //Div shoppingCart limpiado
         (divCarrito.classList.contains('inactive') ? '' : divCarrito.classList.add('inactive'))
     }else{
