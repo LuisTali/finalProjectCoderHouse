@@ -4,9 +4,8 @@ window.onload = start();
 
 function start(){
 
-//Carrito
-let carrito = [];
-let subTotal = 0;
+let carrito = []; //Productos se agregan aqui
+let subTotal = 0; //Subtotal calculado en base a productos del carrito
 
 //inputSubtotal mostrar precio
 const inputSubT = document.getElementById('subtotal');
@@ -14,8 +13,10 @@ const inputSubT = document.getElementById('subtotal');
 //Boton para ordenar al costado del inputSubTotal
 const orderBtn = document.getElementById('order')
 
+//Container donde se presentan los platos agregados al carrito
 const divCarrito = document.getElementById("shoppingCart");
 
+//Obtiene el plato, lo agrega al carrito, calcula el subtotal y modifica el HTML
 const agregarCarrito = (plato) =>{
     carrito.push(plato);
     subTotal += plato.precio;
@@ -27,10 +28,9 @@ const agregarCarrito = (plato) =>{
     
 }
 
-//Al realizar la orden el subtotal vuelve a 0
+//Al realizar la orden, si es que el carrito no esta vacio, el subtotal vuelve a 0
 orderBtn.onclick = ()=>{
     if(carrito.length > 0){
-        console.log('Carrito Vaciado, Orden pedida, Subtotal restaurado a 0');
         inputSubT.setAttribute('placeholder',`$0`);
         carrito = [];
         subTotal = 0;
@@ -42,14 +42,14 @@ orderBtn.onclick = ()=>{
     }
 }
 
-
+//Al cliquear el subtotal, se muestran los productos del carrito, al volver a cliquear se ocultan
 inputSubT.onmouseup = () =>{
     if(carrito.length>0){
         divCarrito.classList.toggle('inactive');
     }
 }
 
-
+//Lee el archivo food.json y carga las listas en la pagina
 const cargarPlatosCreate = async() => {
     let respuesta = await fetch('./Data/food.json');
     let platos = await respuesta.json();
@@ -78,7 +78,7 @@ const cargarPlatosCreate = async() => {
                     button.textContent = `$${plato.precio}`;
                     button.setAttribute('value',plato.idPlato); 
                     button.classList.add('buyBtn');
-                    button.addEventListener('click',()=>{console.log(`boton cliqueado ${button.value}`);agregarCarrito (plato)})       
+                    button.addEventListener('click',()=>{agregarCarrito (plato)})       
                     let shoppingCartImg = document.createElement('img');
                     shoppingCartImg.setAttribute('src',"./Iconos/shoppingCart/apple-touch-icon.png")
                     button.appendChild(shoppingCartImg);            
@@ -93,6 +93,7 @@ const cargarPlatosCreate = async() => {
     });
 
 }
-    cargarPlatosCreate()
-    obtenerFoodFile()
+
+    cargarPlatosCreate(); //Ejecuto el metodo para poblar las listas
+
 }

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comentarios Buffet</title>
+    <link rel="stylesheet" href="./Styles/commentsStyle.css">
+</head>
+<body>
+    <a href="index.html"> < Back to HomePage</a>
+    <form>
+        <h3>Comentarios</h3>
+        <div class="inputDiv">
+            <label for="name">Nombre Completo</label>
+            <input type="text" id="inputNombre">
+        </div>
+        <div class="inputDiv">
+            <label for="email">Email</label>
+            <input type="text" id="inputEmail">
+        </div>
+        <div class="inputDiv">
+            <label for="titulo">Titulo de la Opinion</label>
+            <input type="text" id="inputTitulo">
+        </div>
+        <div class="inputDiv">
+            <label for="valoracion">Puntaje de la Opinion de 0 a 5</label>
+            <input type="number" id="inputValoracion">
+        </div>
+        <div class="inputDiv">
+            <label for="opinion">Desarrolle su opinion</label>
+            <textarea id="inputOpinion"></textarea>
+        </div>
+    </form>
+
+    <hr/>
+
+    <div id="comentarioPreview">
+        <h2>Preview de su Opinion</h2>
+        <h3 id="tituloPreview">Titulo</h3>
+        <h4 id="valoracionPreview">0.0 / 5</h4>
+        <p id="opinionPreview">Opinion desarrollada</p>
+        <button id="submitBtn">submit</button>
+    </div>
+
+    
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type='module' src="./Js/Scripts/commentsScript.js"></script>
+</body>
+</html>
