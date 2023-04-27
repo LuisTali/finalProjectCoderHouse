@@ -22,10 +22,32 @@ const agregarCarrito = (plato) =>{
     subTotal += plato.precio;
     inputSubT.setAttribute('placeholder',`$${subTotal}`);
     swal(`${plato.nombre} anadido al carrito`,'','success');
-    let dish = document.createElement('h4');
-    dish.textContent = plato.nombre + ' $' + plato.precio;
-    divCarrito.appendChild(dish);
-    
+    renderCarrito(carrito);
+}
+
+const renderCarrito = (carritoPlatos) =>{
+    divCarrito.innerHTML = '';
+    carrito.forEach((plato)=>{
+        let dish = document.createElement('div');
+        let nombreDish = document.createElement('h4');
+        nombreDish.textContent = plato.nombre + ' $' + plato.precio;
+        let buttonRemove = document.createElement('button');
+        buttonRemove.innerHTML = 'Remover';
+        buttonRemove.onclick = () =>{
+            removeFromCart(plato);
+        }
+        dish.appendChild(nombreDish);
+        dish.appendChild(buttonRemove);
+        divCarrito.appendChild(dish);
+    })
+}
+
+const removeFromCart = (comida) =>{
+    carrito = carrito.filter((product) => product.idPlato != comida.idPlato);
+    subTotal -= comida.precio;
+    inputSubT.setAttribute('placeholder',`$${subTotal}`);
+    if(carrito.length == 0) (divCarrito.classList.contains('inactive') ? '' : divCarrito.classList.add('inactive'));
+    renderCarrito();  
 }
 
 //Al realizar la orden, si es que el carrito no esta vacio, el subtotal vuelve a 0
