@@ -46,10 +46,9 @@ const renderCarrito = (carritoPlatos) =>{
 
 const removeFromCart = (comida) =>{
     
-    let index = carrito.indexOf(comida);
+    let index = carrito.indexOf(comida); //Obtiene indice del elemento a borrar
     console.log(index);
-    carrito.splice(index,1);
-    //carrito = carrito.filter((product) => product.idPlato != comida.idPlato);
+    carrito.splice(index,1); //Elimina desde el indice obtenido un solo elemento, es decir el plato elegido para borrar
     subTotal -= comida.precio;
     inputSubT.setAttribute('placeholder',`$${subTotal}`);
     if(carrito.length == 0) (divCarrito.classList.contains('inactive') ? '' : divCarrito.classList.add('inactive'));
